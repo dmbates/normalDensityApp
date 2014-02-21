@@ -22,8 +22,11 @@ shinyUI(pageWithSidebar(
                       ,numericInput("unifmax","upper",1)
                       )
             ,tabPanel("Binomial"
-                      ,numericInput("ntrials","number of trials",10)
+                      ,numericInput("binomntrials","number of trials",10)
                       ,numericInput("binomprob","probability of success",0.5)
+                      )
+            ,tabPanel("Geometric"
+                      ,numericInput("geomprob","probability of success",0.5)
                       )
             ,tabPanel("Poisson"
                       ,numericInput("poislambda","mean",1)
