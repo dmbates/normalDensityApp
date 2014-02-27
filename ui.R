@@ -7,8 +7,8 @@ shinyUI(pageWithSidebar(
         ,br()
         ,tabsetPanel(
             tabPanel("Normal"
-                     ,numericInput("normmean","mean",0)
-                     ,numericInput("normsd","standard deviation",1)
+                     ,numericInput("normmean","mean, μ",0)
+                     ,numericInput("normsd","standard deviation, σ",1)
                      )
             ,tabPanel("Exponential"
                       ,numericInput("exprate","rate",1)
@@ -29,14 +29,14 @@ shinyUI(pageWithSidebar(
                       ,numericInput("geomprob","probability of success",0.5)
                       )
             ,tabPanel("Poisson"
-                      ,numericInput("poislambda","mean",1)
+                      ,numericInput("poislambda","mean, λ",1)
                       )
             , id = "dist"
             , position = "left"
             )
         )
     ,mainPanel(
-        verbatimTextOutput("probstring")
+        textOutput("probstring")
         ,plotOutput("densplot")        
         )
     )

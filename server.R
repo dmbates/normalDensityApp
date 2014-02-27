@@ -2,24 +2,23 @@ library(shiny)
 library(lattice)
 
 shinyServer(function(input,output) {
-    output$probstring <-
-        renderText({
-            x <- input$x
-            paste(input$dist, "P(X < x) =",
-                  format(switch(input$dist
-                                ,Binomial = pbinom(x, input$binomntrials,input$binomprob)
-                                ,Exponential = pexp(x, input$exprate)
-                                ,Geometric = pgeom(x, input$geomprob)
-                                ,HyperGeometric = phyper(x, input$hyperm, input$hypern, input$hyperk)
-                                ,NegativeBinomial = pnbinom(x, input$nbinomsize, input$nbinomprob)
-                                ,Normal = pnorm(x,input$normmean,input$normsd)
-                                ,Poisson = ppois(x,input$poislambda)
-                                ,Uniform = punif(x,input$unifmin,input$unifmax)
-                                ,Weibull = pweibull(x, input$weibshape, input$weibscale)
-                                )
-                         )
-                  )
-        })
+    output$probstring <- renderText({
+        x <- input$x
+        paste("P(X ≤", format(x),") = ",
+              format(switch(input$dist
+                            ,Binomial = pbinom(x, input$binomntrials,input$binomprob)
+                            ,Exponential = pexp(x, input$exprate)
+                            ,Geometric = pgeom(x, input$geomprob)
+                            ,HyperGeometric = phyper(x, input$hyperm, input$hypern, input$hyperk)
+                            ,NegativeBinomial = pnbinom(x, input$nbinomsize, input$nbinomprob)
+                            ,Normal = pnorm(x,input$normmean,input$normsd)
+                            ,Poisson = ppois(x,input$poislambda)
+                            ,Uniform = punif(x,input$unifmin,input$unifmax)
+                            ,Weibull = pweibull(x, input$weibshape, input$weibscale)
+                            )
+                     )
+              )
+    })
     output$densplot <- renderPlot({
         xv <- input$x
         switch(input$dist
